@@ -418,8 +418,26 @@ export default function App() {
     "https://files.catbox.moe/20xpps.jfif"
   ];
 
-  return (
+ return (
     <div className="min-h-screen w-full bg-[#fff0f5] overflow-hidden">
+      <audio
+        ref={audioRef}
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+        loop
+      />
+      
+      {isOpen && (
+        <motion.button
+          className="fixed top-4 right-4 z-[10001] p-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg text-pink-600 hover:bg-pink-100 transition-colors"
+          onClick={toggleMute}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1 }}
+        >
+          {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+        </motion.button>
+      )}
+
       <AnimatePresence>
         {!isOpen && (
           <motion.div
