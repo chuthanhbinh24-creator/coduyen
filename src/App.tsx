@@ -177,9 +177,10 @@ interface PhotoFrameProps {
   delay: number;
   zIndex: number;
   scale?: number;
+  imageUrl: string;
 }
 
-const PhotoFrame: React.FC<PhotoFrameProps> = ({ index, x, y, delay, zIndex, scale = 1 }) => {
+const PhotoFrame: React.FC<PhotoFrameProps> = ({ index, x, y, delay, zIndex, scale = 1, imageUrl }) => {
   const isLeft = index === 0;
   return (
     <motion.div
@@ -197,7 +198,7 @@ const PhotoFrame: React.FC<PhotoFrameProps> = ({ index, x, y, delay, zIndex, sca
     >
       <div className="photo-string"></div>
       <img
-        src={`https://picsum.photos/seed/woman${index + 50}/400/600`}
+        src={imageUrl}
         alt={`Kỷ niệm ${index + 1}`}
         referrerPolicy="no-referrer"
       />
@@ -411,6 +412,12 @@ export default function App() {
     { x: 15, y: 55, zIndex: 6 }, // Right bottom
   ];
 
+  const images = [
+    "https://files.catbox.moe/20xpps.jfif",
+    "https://files.catbox.moe/qf2zea.jfif",
+    "https://files.catbox.moe/1uusr0.jfif"
+  ];
+
   return (
     <div className="min-h-screen w-full bg-[#fff0f5] overflow-hidden">
       <AnimatePresence>
@@ -440,6 +447,7 @@ export default function App() {
               delay={3 + i * 0.5}
               zIndex={pos.zIndex}
               scale={pos.scale}
+              imageUrl={images[i]}
             />
           ))}
 
