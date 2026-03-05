@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Gift, Heart, X } from 'lucide-react';
+import { Gift, Heart, X, Volume2, VolumeX } from 'lucide-react';
 
 // --- Flower Component ---
 const Flower = () => {
@@ -399,10 +399,22 @@ const Title = () => {
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [showFlower, setShowFlower] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleOpen = () => {
     setIsOpen(true);
+    if (audioRef.current) {
+      audioRef.current.play().catch(err => console.log("Audio play failed:", err));
+    }
     setTimeout(() => setShowFlower(true), 500);
+  };
+
+  const toggleMute = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
   };
 
   // Artistic photo positions: 1 left, 2 right
@@ -418,7 +430,7 @@ export default function App() {
     "https://files.catbox.moe/20xpps.jfif"
   ];
 
- return (
+  return (
     <div className="min-h-screen w-full bg-[#fff0f5] overflow-hidden">
       <audio
         ref={audioRef}
