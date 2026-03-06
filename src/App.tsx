@@ -426,7 +426,7 @@ export default function App() {
 
   const images = [
     "https://files.catbox.moe/1uusr0.jfif",
-    "https://files.catbox.moe/qf2zea.jfif",
+    "https://files.catbox.moe/1uclgw.jpg",
     "https://files.catbox.moe/20xpps.jfif"
   ];
 
